@@ -7,6 +7,7 @@ const inputElm = document.querySelector('.time-input');
 const minutesElm = document.querySelector('.alarm__minutes');
 const secondsElm = document.querySelector('.alarm__seconds');
 const alarmElm = document.querySelector('.alarm');
+let second = 0;
 
 const start = (event) => {
     event.preventDefault();
@@ -15,6 +16,7 @@ const start = (event) => {
     alarmElm.classList.remove('alarm--ring');
 
     let time = Number(inputElm.value);
+    
     console.log('Vstupní hodnota: ' + time);
 
     if (time === 0) {
@@ -26,11 +28,24 @@ const start = (event) => {
 
             if (time > 0) {
                 time--;
-                minutesElm.textContent = time;
-                minutes.textContent = String(time).padStart(2, '0');
-                //secondsElm.textContent = String(time).padStart(2, '0');
-                console.log(secondsElm.textContent);       
+                //minutesElm.textContent = time + ':';
+                minutesElm.textContent = String(time).padStart(2, '0') + ':';
+                second.textContent = String(second).padStart(2, '0');
+                console.log(secondsElm.textContent);
+
             } else {
+                if (second > 0) {
+                    second--;
+                } else {
+                    time--;
+                    second = 59;
+                }
+                minutesElm.textContent = String(time).padStart(2, '0') + ':';
+                second.textContent = String(second).padStart(2, '0');
+            }
+
+            if (time <= 0 && second <=0) {
+
                 clearTimeout(resetOdecitej);
                 inputElm.value = '';
 
