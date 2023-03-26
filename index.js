@@ -27,8 +27,10 @@ const start = (event) => {
             if (time > 0) {
                 time--;
                 secondsElm.textContent = String(time).padStart(2, '0');
-                console.log(secondsElm.textContent);
-            } else {
+                console.log(secondsElm.textContent);       
+            } 
+            
+            if (time <= 0) {
                 clearTimeout(resetOdecitej);
                 inputElm.value = '';
 
