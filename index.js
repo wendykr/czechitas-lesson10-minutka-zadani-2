@@ -14,31 +14,47 @@ const start = (event) => {
 
     alarmElm.classList.remove('alarm--ring');
 
-    let time = Number(inputElm.value);
-    let second = 0;
+    let time = inputElm.value;
 
     console.log('Vstupní hodnota: ' + time);
 
-    if (time === 0) {
-        alert('Zadejte vstupní hodnotu');
-    } else {
-        inputElm.value = '';
+    /*string search*/
+    let count = 0;
 
+    // looping through the items
+    for (let i = 0; i < time.length; i++) {
+    
+        // check if the character is at that position
+        if (time.charAt(i) == ':') {
+            count += 1;
+        }
+    }
+    console.log('Počet: ' + count);
+
+    if (count === 1) {
+
+        let atIndex = time.indexOf(':');
+        console.log('indexOf: ' + atIndex);
+        let minutes = Number(time.slice(0, atIndex));
+        let seconds = Number(time.slice(atIndex + 1));
+
+        inputElm.value = '';
+    
         const odecitej = () => {
 
-            if (time >= 0) {
-                if (second > 0) {
-                    second--;
+            if (minutes >= 0) {
+                if (seconds > 0) {
+                    seconds--;
                 } else {
-                    time--;
-                    second = 59;
+                    minutes--;
+                    seconds = 59;
                 }
-                minutesElm.textContent = String(time).padStart(2, '0') + ':';
-                secondsElm.textContent = String(second).padStart(2, '0');
+                minutesElm.textContent = String(minutes).padStart(2, '0') + ':';
+                secondsElm.textContent = String(seconds).padStart(2, '0');
                 console.log(secondsElm.textContent);
             }
 
-            if (time <= 0 && second <=0) {
+            if (minutes <= 0 && seconds <=0) {
 
                 clearTimeout(resetOdecitej);
                 inputElm.value = '';
@@ -61,6 +77,9 @@ const start = (event) => {
         }
 
         const resetOdecitej = setInterval(odecitej, 1000);
+
+    } else {
+        alert('Neplatný vstup');
     }
 }
 
