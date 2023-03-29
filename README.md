@@ -14,7 +14,7 @@ Zařiďte, aby minutka správně odpočítávala vteřiny a začala zvonit ve ch
 - Při kliknutí na Start nastavte časovač pomocí `setInterval`. Ten se bude opakovat každou vteřinu a pokaždé sníží hodnotu v proměnné `time` o jedna.
 - Jakmile proměnná `time` dosáhne nuly, zapněte zvonění a zrušte časovač aby nezačal počítat do mínusu.
 
-## 2. Minutka 3
+## 3. Minutka 3
 
 Vylepšete program naší kuchyňské minutky tak, aby zobrazovala nejen vteřiny, ale i minuty. Layout stránky je na to připraven. Nechejte uživatele zadat minuty, nikoliv vteřiny, a správně odpočítávejte čas až k nule.
 
